@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="portfolio.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Accueil - Portfolio Nicolas Revel</title>
+  </head>
+  <body>
+    <header id="haut_de_page">
+      <h1>Portfolio - Nicolas Revel</h1>
+      <nav>
+        <ul>
+          <li><a href="portfolio.html">Accueil</a></li>
+          <li><a href="portfolio.html#page_projet">Projets</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div id="page_presentation">
+        <div id="container_photo">
+          <img
+            src="img/page_accueil/photoperso.jpg"
+            alt="Photo de Nicolas Revel"
+            id="photoperso"
+          />
+        </div>
+        <div id="container_presentation">
+          <div id="presentation">
+            <p id="nom_prénom">Nicolas Revel</p>
+            <p id="titre_pro">Apprentit développeur web</p>
+            <div id="langages">
+              <div id="html">
+                <p>HTML</p>
+                <img
+                  src="img/page_accueil/logohtml.png"
+                  alt="Logo du langage HTML 5"
+                />
+              </div>
+              <div id="trait"></div>
+              <div id="css">
+                <p>CSS</p>
+                <img
+                  src="img/page_accueil/logocss.png"
+                  alt="Logo du langage CSS 3"
+                />
+              </div>
+            </div>
+          </div>
+          <div id="container_fleche_bas">
+            <a href="#page_projet"></a>
+          </div>
+        </div>
+      </div>
+      <div id="page_projet">
+        <div id="tiroir_projet">
+          <div class="projet">
+            <a href="projet1.html">
+              <img
+                src="img/page_accueil/screenshotide.png"
+                alt="Screenshot du projet IDE"
+              />
+              <p class="titre_projet"><strong>Projet IDE</strong></p>
+            </a>
+          </div>
+          <div class="projet">
+            <a href="projet2.html">
+              <img
+                src="img/page_accueil/screenshotconnexion.png"
+                alt="Screenshot du projet Connexion"
+              />
+              <p class="titre_projet"><strong>Projet Connexion</strong></p>
+            </a>
+          </div>
+          <div class="projet">
+            <a href="projet3.html">
+              <img
+                src="img/page_accueil/screenshotlistedenaissance.png"
+                alt="Screenshot du projet Liste de naissance"
+              />
+              <p class="titre_projet">
+                <strong>Projet Liste de naissance</strong>
+              </p>
+            </a>
+          </div>
+        </div>
+        <div id="container_fleche_haut">
+          <a href="#haut_de_page"></a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

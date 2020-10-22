@@ -1,0 +1,252 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+}
+
+/* Mise en forme du header */
+
+header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #22223b;
+  color: #f2e9e4;
+}
+
+header h1 {
+  width: 45%;
+  text-align: center;
+  font-size: 40px;
+  border-right: 3px solid #f2e9e4;
+}
+
+header nav {
+  width: 40%;
+  margin-right: 10%;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header li {
+  font-size: 25px;
+}
+
+header a {
+  text-decoration: none;
+  color: #f2e9e4;
+  padding: 15px 40px;
+  border-radius: 3px;
+  background: linear-gradient(to left, transparent 50%, #4a4e69 50%) right;
+  background-size: 220%;
+  transition: 400ms ease-in-out;
+}
+
+header a:hover {
+  background-position: left;
+}
+
+/* Fin de la mise en forme du header */
+
+/* Mise en forme du main */
+
+main {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#page_presentation {
+  display: flex;
+  width: 100%;
+}
+
+#container_photo {
+  position: relative;
+  right: 0;
+  height: calc(100vh - 80px);
+  filter: grayscale(90%);
+  transition: 500ms ease-in-out;
+}
+
+#photoperso {
+  height: 100%;
+}
+
+#container_photo:hover {
+  filter: grayscale(20%);
+}
+
+#container_presentation {
+  position: absolute;
+  right: 0;
+  height: calc(100vh - 80px);
+  width: 55%;
+  filter: grayscale(90%);
+  transition: 500ms ease-in-out;
+  background-color: #4a4e69;
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+#container_presentation:hover {
+  filter: grayscale(10%);
+}
+
+#presentation {
+  padding-left: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 95%;
+}
+
+#nom_prénom {
+  font-size: 80px;
+  color: #f2e9e4;
+  line-height: 0em;
+}
+
+#titre_pro {
+  font-size: 45px;
+  line-height: 0em;
+  color: #f2e9e4;
+}
+
+#langages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  font-weight: 200;
+}
+
+#trait {
+  display: block;
+  content: "";
+  width: 55px;
+  height: 30px;
+  border-bottom: 2px solid #f2e9e4;
+}
+
+#html,
+#css {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 300;
+  color: #f2e9e4;
+}
+
+#container_fleche_bas {
+  position: absolute;
+  bottom: 7%;
+  left: 5%;
+  border-radius: 50%;
+  z-index: 2;
+  height: 60px;
+  width: 60px;
+  background-image: url(img/page_accueil/flechebax.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: invert(100%);
+}
+
+#container_fleche_bas a {
+  display: block;
+  height: 80%;
+  width: 80%;
+}
+
+#page_projet {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  background-color: #4a4e69;
+}
+
+#tiroir_projet {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-template-rows: 500px;
+  column-gap: 5%;
+}
+
+.projet {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  filter: grayscale(90%);
+  transition: 200ms ease-in-out;
+}
+
+.projet:hover {
+  filter: grayscale(10%);
+  background-color: #c9ada7;
+}
+
+.projet a {
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.projet img {
+  width: 90%;
+  padding-top: 5%;
+}
+
+.projet p {
+  font-size: 40px;
+  line-height: 1.5em;
+  width: 80%;
+  text-align: center;
+  color: #f2e9e4;
+}
+
+#container_fleche_haut {
+  align-self: center;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  background-image: url(img/page_accueil/flechebax.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+  filter: invert(100%);
+}
+
+#container_fleche_haut a {
+  display: block;
+  height: 80%;
+  width: 80%;
+}
