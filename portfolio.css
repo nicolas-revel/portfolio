@@ -166,7 +166,7 @@ main {
   z-index: 2;
   height: 60px;
   width: 60px;
-  background-image: url(img/page_accueil/flechebax.png);
+  background-image: url(img/portfolio/flechebax.png);
   background-size: contain;
   background-repeat: no-repeat;
   filter: invert(100%);
@@ -239,7 +239,7 @@ main {
   border-radius: 50%;
   height: 60px;
   width: 60px;
-  background-image: url(img/page_accueil/flechebax.png);
+  background-image: url(img/portfolio/flechebax.png);
   background-size: contain;
   background-repeat: no-repeat;
   transform: rotate(180deg);
