@@ -74,4 +74,21 @@ main {
   height: calc(100vh - 80px);
   width: 100%;
   background-color: #4a4e69;
+  position: relative;
+}
+
+main img {
+  height: 330px;
+  position: absolute;
+  left: 5%;
+  top: 15%;
+}
+
+main p {
+  width: 600px;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  font-size: 27px;
+  color: #f2e9e4;
 }
