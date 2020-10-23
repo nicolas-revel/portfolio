@@ -12,6 +12,7 @@ body {
   justify-content: space-between;
   align-items: center;
   font-family: "Raleway", sans-serif;
+  background-color: #4a4e69;
 }
 
 /* Mise en forme du header */
@@ -75,6 +76,16 @@ main {
   width: 100%;
   background-color: #4a4e69;
   position: relative;
+  animation: fadein 1000ms linear forwards;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 main img {
@@ -91,5 +102,8 @@ main p {
   bottom: 10%;
   right: 5%;
   font-size: 27px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #c9ada7;
   color: #f2e9e4;
 }
