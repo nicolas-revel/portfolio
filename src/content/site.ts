@@ -4,6 +4,9 @@ export const profile = {
   location: "Marseille · full remote",
   pitch:
     "J'aide les équipes tech à adopter le code assisté par IA, sans perdre en qualité ni en sécurité.",
+  // Le titre d'accueil met en valeur la fin de la phrase.
+  pitchLead: "J'aide les équipes tech à adopter le code assisté par IA,",
+  pitchAccent: "sans perdre en qualité ni en sécurité.",
   intro:
     "Je code en production depuis 5 ans et j'ai encadré plus de 80 développeurs en formation. Aujourd'hui, j'accompagne les équipes qui veulent passer de l'usage individuel de l'IA à une vraie méthode d'équipe.",
   email: "nicolas.revel@laplateforme.io",

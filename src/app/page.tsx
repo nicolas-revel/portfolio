@@ -1,3 +1,6 @@
+import { AsciiDivider } from "@/components/ascii-divider";
+import { AsciiScene } from "@/components/ascii-scene";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   background,
   caseStudies,
@@ -10,47 +13,63 @@ import {
 } from "@/content/site";
 
 const sectionClass = "mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 sm:py-24";
-const titleClass = "text-2xl font-semibold tracking-tight sm:text-3xl";
+const titleClass = "mt-3 text-2xl font-medium tracking-tight sm:text-4xl";
+const primaryButtonClass =
+  "inline-flex min-h-11 items-center rounded-[3px] bg-accent px-5 font-medium text-background hover:opacity-90";
+const secondaryButtonClass =
+  "inline-flex min-h-11 items-center rounded-[3px] border border-border px-5 hover:border-accent";
+
+function SectionLabel({ index, children }: { index: number; children: string }) {
+  return (
+    <p className="font-mono text-xs text-accent">
+      [{String(index).padStart(2, "0")}] {children}
+    </p>
+  );
+}
 
 export default function Home() {
   return (
     <>
-      <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-6 sm:px-6">
-        <span className="font-semibold">{profile.name}</span>
-        <nav className="hidden gap-5 text-sm text-muted sm:flex">
-          <a href="#offres" className="hover:text-foreground">Offres</a>
-          <a href="#methode" className="hover:text-foreground">Méthode</a>
-          <a href="#projets" className="hover:text-foreground">Projets</a>
-          <a href="#contact" className="hover:text-foreground">Contact</a>
-        </nav>
+      <header className="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-6 sm:px-6">
+        <span className="text-lg font-medium">{profile.name}</span>
+        <div className="flex items-center gap-6">
+          <nav className="hidden gap-5 font-mono text-xs text-muted sm:flex">
+            <a href="#offres" className="hover:text-foreground">offres</a>
+            <a href="#methode" className="hover:text-foreground">méthode</a>
+            <a href="#projets" className="hover:text-foreground">projets</a>
+            <a href="#contact" className="hover:text-foreground">contact</a>
+          </nav>
+          <ThemeToggle />
+        </div>
       </header>
 
       <main className="flex-1">
-        <section className={`${sectionClass} pt-12 sm:pt-20`}>
-          <p className="text-sm text-muted">
-            {profile.role} · {profile.location}
-          </p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
-            {profile.pitch}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-muted">{profile.intro}</p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#offres"
-              className="rounded-full bg-accent px-5 py-3 text-sm font-medium text-background"
-            >
-              Voir les offres
-            </a>
-            <a
-              href="#contact"
-              className="rounded-full border border-border px-5 py-3 text-sm font-medium"
-            >
-              Réserver un appel
-            </a>
+        <section className="mx-auto grid w-full max-w-5xl items-center gap-12 px-4 pt-10 pb-16 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+          <div>
+            <p className="font-mono text-xs text-muted">
+              ~ {profile.role} · {profile.location}
+            </p>
+            <h1 className="mt-5 text-4xl font-medium tracking-tight sm:text-5xl">
+              {profile.pitchLead}{" "}
+              <em className="text-accent">{profile.pitchAccent}</em>
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-muted">{profile.intro}</p>
+            <div className="mt-10 flex flex-wrap items-center gap-4 text-sm">
+              <a href="#offres" className={primaryButtonClass}>
+                Voir les offres
+              </a>
+              <a href="#contact" className="underline underline-offset-4 hover:text-accent">
+                Réserver un appel
+              </a>
+            </div>
           </div>
+          <AsciiScene />
         </section>
 
+        <AsciiDivider />
+
         <section className={sectionClass}>
+          <SectionLabel index={1}>constat</SectionLabel>
           <h2 className={titleClass}>{problem.title}</h2>
           <div className="mt-6 grid max-w-3xl gap-4 text-muted">
             {problem.body.map((paragraph) => (
@@ -60,19 +79,21 @@ export default function Home() {
         </section>
 
         <section id="offres" className={sectionClass}>
+          <SectionLabel index={2}>offres</SectionLabel>
           <h2 className={titleClass}>Offres</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {offers.map((offer) => (
-              <article
-                key={offer.slug}
-                className="flex flex-col rounded-2xl border border-border bg-surface p-6"
-              >
-                <h3 className="text-lg font-semibold">{offer.name}</h3>
+          <div className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2">
+            {offers.map((offer, index) => (
+              <article key={offer.slug} className="group flex flex-col border-t border-foreground pt-5">
+                <span aria-hidden className="font-mono text-sm text-accent">
+                  <span className="group-hover:hidden">[{String(index + 1).padStart(2, "0")}]</span>
+                  <span className="hidden group-hover:inline">[ → ]</span>
+                </span>
+                <h3 className="mt-2 text-xl font-medium">{offer.name}</h3>
                 <p className="mt-1 text-sm text-muted">{offer.audience}</p>
                 <ul className="mt-5 grid gap-2 text-sm">
                   {offer.content.map((item) => (
                     <li key={item} className="flex gap-2">
-                      <span aria-hidden className="text-accent">—</span>
+                      <span aria-hidden className="font-mono text-accent">~</span>
                       {item}
                     </li>
                   ))}
@@ -86,13 +107,16 @@ export default function Home() {
           </div>
         </section>
 
+        <AsciiDivider />
+
         <section id="methode" className={sectionClass}>
+          <SectionLabel index={3}>méthode</SectionLabel>
           <h2 className={titleClass}>{method.title}</h2>
-          <ol className="mt-10 grid gap-6 sm:grid-cols-3">
+          <ol className="mt-10 grid gap-8 sm:grid-cols-3">
             {method.steps.map((step, index) => (
-              <li key={step.name}>
-                <span className="font-mono text-sm text-accent">0{index + 1}</span>
-                <h3 className="mt-2 font-semibold">{step.name}</h3>
+              <li key={step.name} className="border-t border-border pt-5">
+                <span className="font-mono text-sm text-accent">[{String(index + 1).padStart(2, "0")}]</span>
+                <h3 className="mt-2 text-lg font-medium">{step.name}</h3>
                 <p className="mt-2 text-sm text-muted">{step.text}</p>
               </li>
             ))}
@@ -100,26 +124,22 @@ export default function Home() {
         </section>
 
         <section id="projets" className={sectionClass}>
+          <SectionLabel index={4}>projets</SectionLabel>
           <h2 className={titleClass}>Projets</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {caseStudies.map((study) => {
               const card = (
                 <>
-                  <h3 className="font-semibold">{study.title}</h3>
+                  <h3 className="text-lg font-medium">{study.title}</h3>
                   <p className="mt-2 text-sm text-muted">{study.summary}</p>
-                  <ul className="mt-4 flex flex-wrap gap-2">
+                  <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted">
                     {study.tags.map((tag) => (
-                      <li
-                        key={tag}
-                        className="rounded-full border border-border px-3 py-1 text-xs text-muted"
-                      >
-                        {tag}
-                      </li>
+                      <li key={tag}>[{tag}]</li>
                     ))}
                   </ul>
                 </>
               );
-              const cardClass = "block rounded-2xl border border-border bg-surface p-6";
+              const cardClass = "block border border-border bg-surface p-6";
               return study.href ? (
                 <a key={study.title} href={study.href} className={`${cardClass} hover:border-accent`}>
                   {card}
@@ -133,7 +153,10 @@ export default function Home() {
           </div>
         </section>
 
+        <AsciiDivider />
+
         <section className={sectionClass}>
+          <SectionLabel index={5}>parcours</SectionLabel>
           <h2 className={titleClass}>Parcours</h2>
           <ul className="mt-10 grid gap-4">
             {experiences.map((experience) => (
@@ -155,29 +178,27 @@ export default function Home() {
         </section>
 
         <section id="contact" className={sectionClass}>
+          <SectionLabel index={6}>contact</SectionLabel>
           <h2 className={titleClass}>{contact.title}</h2>
           <p className="mt-4 max-w-2xl text-muted">
             {contact.text}
           </p>
           <div className="mt-8 flex flex-wrap gap-3 text-sm">
-            <a
-              href={`mailto:${profile.email}`}
-              className="rounded-full bg-accent px-5 py-3 font-medium text-background"
-            >
+            <a href={`mailto:${profile.email}`} className={primaryButtonClass}>
               {profile.email}
             </a>
-            <a href={profile.links.linkedin} className="rounded-full border border-border px-5 py-3">
+            <a href={profile.links.linkedin} className={secondaryButtonClass}>
               LinkedIn
             </a>
-            <a href={profile.links.github} className="rounded-full border border-border px-5 py-3">
+            <a href={profile.links.github} className={secondaryButtonClass}>
               GitHub
             </a>
           </div>
         </section>
       </main>
 
-      <footer className="mx-auto w-full max-w-5xl px-4 py-10 text-sm text-muted sm:px-6">
-        {profile.name} · Site construit en code assisté par IA
+      <footer className="mx-auto w-full max-w-5xl px-4 py-10 font-mono text-xs text-muted sm:px-6">
+        ~ {profile.name} · site construit en code assisté par IA
       </footer>
     </>
   );
