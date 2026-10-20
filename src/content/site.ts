@@ -3,12 +3,12 @@ export const profile = {
   role: "Développeur fullstack & DevOps, ancien formateur",
   location: "Marseille · full remote",
   pitch:
-    "J'aide les équipes tech à adopter le code assisté par IA, sans perdre en qualité ni en sécurité.",
+    "Développeur fullstack & DevOps freelance à Marseille. Missions Next.js, NestJS, Docker et CI/CD menées en code assisté par IA, et ateliers pour former votre équipe.",
   // Le titre d'accueil met en valeur la fin de la phrase.
-  pitchLead: "J'aide les équipes tech à adopter le code assisté par IA,",
-  pitchAccent: "sans perdre en qualité ni en sécurité.",
+  pitchLead: "Développeur fullstack & DevOps freelance,",
+  pitchAccent: "qui code avec l'IA et vous transmet la méthode.",
   intro:
-    "Je code en production depuis 5 ans et j'ai encadré plus de 80 développeurs en formation. Aujourd'hui, j'accompagne les équipes qui veulent passer de l'usage individuel de l'IA à une vraie méthode d'équipe.",
+    "Next.js, NestJS, Docker, CI/CD. Basé à Marseille, en remote partout en France. Ancien formateur, je travaille en code assisté par IA au quotidien et je sais le transmettre à une équipe.",
   email: "nicolas.revel@laplateforme.io",
   links: {
     github: "https://github.com/nicolas-revel",
@@ -35,52 +35,42 @@ export type Offer = {
 
 export const offers: Offer[] = [
   {
-    slug: "diagnostic",
-    name: "Diagnostic IA",
-    audience: "Pour l'équipe qui se demande par où commencer.",
+    slug: "mission",
+    name: "Mission dev fullstack & DevOps",
+    audience: "Pour la startup ou la PME qui a un produit à livrer, sans recruter.",
     content: [
-      "Entretiens avec les devs et l'encadrement",
-      "État des outils, des usages et des risques de sécurité",
-      "Plan d'adoption priorisé, prêt à dérouler",
+      "Front et back en Next.js, React, NestJS, GraphQL",
+      "Docker, CI/CD, déploiement et durcissement de serveurs, monitoring",
+      "Mené en code assisté par IA, avec revue et tests systématiques",
+      "Conventions (CLAUDE.md, skills) laissées dans le dépôt pour votre équipe",
     ],
-    format: "3 jours",
-    price: "À partir de 1 800 € HT",
+    format: "Régie ou forfait, remote ou à Marseille",
+    price: "Sur devis",
   },
   {
     slug: "atelier",
     name: "Atelier code assisté par IA",
-    audience: "Pour l'équipe dev qui veut monter en compétence vite.",
+    audience: "Pour l'équipe de 3 à 8 devs qui a un assistant de code mais s'en sert peu.",
     content: [
-      "Prise en main des assistants et des agents de code",
-      "Revue du code généré, tests et sécurité",
-      "Exercices sur votre propre code, pas sur des exemples jouets",
+      "Prise en main d'un agent de code, sur votre propre code",
+      "Un CLAUDE.md et un premier skill écrits pour votre dépôt",
+      "Revue critique du code généré : tests et sécurité",
+      "Tarif de lancement pour les 3 premières entreprises",
     ],
-    format: "1 à 2 jours, sur site ou à distance",
-    price: "À partir de 1 200 € HT",
+    format: "Demi-journée ou journée, sur site ou à distance",
+    price: "À partir de 600 € HT",
   },
   {
-    slug: "accompagnement",
-    name: "Accompagnement d'équipe",
-    audience: "Pour l'équipe qui adopte l'IA pour de bon.",
+    slug: "decouverte",
+    name: "Appel découverte",
+    audience: "Pour savoir si on peut travailler ensemble.",
     content: [
-      "Coaching embarqué dans vos rituels",
-      "Conventions, CLAUDE.md et skills maintenus par repo",
-      "Revue de PR assistée et intégration en CI",
+      "Votre projet, vos délais, votre équipe",
+      "Un avis franc, et vers qui aller si ce n'est pas moi",
+      "Une proposition chiffrée sous 48 h si ça colle",
     ],
-    format: "2 jours par mois, sur 2 à 3 mois",
-    price: "À partir de 1 400 € HT / mois",
-  },
-  {
-    slug: "mission",
-    name: "Mission dev fullstack & DevOps",
-    audience: "Pour l'entreprise qui a besoin de livrer.",
-    content: [
-      "Next.js, React, NestJS, GraphQL",
-      "Docker, CI/CD, infra sur VPS ou GCP",
-      "Mené en code assisté par IA, méthode incluse",
-    ],
-    format: "Régie ou forfait",
-    price: "500 € HT / jour",
+    format: "30 minutes en visio",
+    price: "Gratuit",
   },
 ];
 
@@ -142,8 +132,8 @@ export const background =
   "Avant le code, un master en neuropsychologie : comprendre comment les gens apprennent et changent leurs habitudes me sert tous les jours.";
 
 export const contact = {
-  title: "Parlons de votre équipe",
-  text: "Un appel de 30 minutes pour comprendre où vous en êtes avec l'IA et voir si je peux vous aider.",
+  title: "Parlons de votre projet",
+  text: "Un appel découverte de 30 minutes, gratuit, pour comprendre votre besoin et voir si je peux vous aider.",
 };
 
 export const experiences = [
