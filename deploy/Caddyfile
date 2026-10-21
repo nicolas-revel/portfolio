@@ -1,0 +1,8 @@
+nicolasrevel.fr {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:3000
+}
+
+www.nicolasrevel.fr {
+	redir https://nicolasrevel.fr{uri} permanent
+}
