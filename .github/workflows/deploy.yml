@@ -1,0 +1,53 @@
+name: Déploiement
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/nicolas-revel/portfolio:latest
+            ghcr.io/nicolas-revel/portfolio:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  vps:
+    needs: image
+    # Ignoré tant que la connexion au VPS n'est pas configurée (voir deploy/README.md).
+    if: vars.VPS_HOST != ''
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Mise à jour du conteneur sur le VPS
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+          VPS: ${{ vars.VPS_USER }}@${{ vars.VPS_HOST }}
+        run: |
+          install -m 700 -d ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+          echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # La clé est limitée côté VPS à deploy/deploy.sh (command= dans authorized_keys).
+          ssh -o BatchMode=yes "$VPS"

@@ -1,0 +1,7 @@
+services:
+  portfolio:
+    image: ghcr.io/nicolas-revel/portfolio:latest
+    restart: unless-stopped
+    # Seul Caddy, sur l'hôte, joint le site : jamais exposé directement.
+    ports:
+      - "127.0.0.1:3000:3000"
