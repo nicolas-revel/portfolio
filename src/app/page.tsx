@@ -1,5 +1,6 @@
 import { AsciiDivider } from "@/components/ascii-divider";
 import { AsciiScene } from "@/components/ascii-scene";
+import { ContactForm } from "@/components/contact-form";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   background,
@@ -183,10 +184,11 @@ export default function Home() {
           <p className="mt-4 max-w-2xl text-muted">
             {contact.text}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3 text-sm">
-            <a href={`mailto:${profile.email}`} className={primaryButtonClass}>
-              {profile.email}
-            </a>
+          <div className="mt-10">
+            <ContactForm />
+          </div>
+          <div className="mt-10 flex flex-wrap items-center gap-3 text-sm">
+            <span className="text-muted">Ou retrouvez-moi sur</span>
             <a href={profile.links.linkedin} className={secondaryButtonClass}>
               LinkedIn
             </a>
