@@ -9,7 +9,6 @@ export const profile = {
   pitchAccent: "qui code avec l'IA et vous transmet la méthode.",
   intro:
     "Next.js, NestJS, Docker, CI/CD. Basé à Marseille, en remote partout en France. Ancien formateur, je travaille en code assisté par IA au quotidien et je sais le transmettre à une équipe.",
-  email: "nicolas.revel@laplateforme.io",
   links: {
     github: "https://github.com/nicolas-revel",
     linkedin: "https://www.linkedin.com/in/nicolas-revel",
