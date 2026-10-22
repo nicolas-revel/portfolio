@@ -1,3 +1,5 @@
+export const siteUrl = "https://nicolasrevel.fr";
+
 export const profile = {
   name: "Nicolas Revel",
   role: "Développeur fullstack & DevOps, ancien formateur",
@@ -17,10 +19,10 @@ export const profile = {
 };
 
 export const problem = {
-  title: "Les outils sont là, la méthode manque",
+  title: "Un produit à livrer, pas le temps de recruter",
   body: [
-    "Vos développeurs ont accès à Copilot, Claude ou Cursor. Certains les utilisent beaucoup, d'autres pas du tout, et personne ne sait vraiment ce qui part en production.",
-    "Sans conventions partagées, l'IA accélère autant la dette que les livraisons : revues bâclées, failles de sécurité, code que personne ne comprend. Je vous aide à poser le cadre qui manque.",
+    "Votre équipe est déjà prise par la roadmap, ou vous n'avez pas encore d'équipe technique. Il faut pourtant livrer, et proprement : une application qui tient en production, des déploiements sans sueurs froides.",
+    "Je prends en charge une partie du produit, du front à la mise en production. Je travaille en code assisté par IA pour avancer vite, avec des revues et des tests à chaque étape, et je laisse un dépôt que votre équipe peut reprendre sans moi.",
   ],
 };
 
