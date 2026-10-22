@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { InlineScript } from "@/components/inline-script";
 import { themeScript } from "@/components/theme-script";
-import { profile } from "@/content/site";
+import { profile, siteUrl } from "@/content/site";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -16,13 +16,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nicolasrevel.fr"),
-  title: `${profile.name} · Accompagnement au code assisté par IA`,
+  metadataBase: new URL(siteUrl),
+  title: `${profile.name} · Développeur fullstack & DevOps freelance à Marseille`,
   description: profile.pitch,
   openGraph: {
     title: profile.name,
     description: profile.pitch,
-    url: "https://nicolasrevel.fr",
+    url: siteUrl,
     locale: "fr_FR",
     type: "website",
   },

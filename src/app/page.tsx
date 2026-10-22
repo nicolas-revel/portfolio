@@ -12,7 +12,7 @@ import {
   profile,
 } from "@/content/site";
 
-const sectionClass = "mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 sm:py-24";
+const sectionClass = "mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-20";
 const titleClass = "mt-3 text-2xl font-medium tracking-tight sm:text-4xl";
 const primaryButtonClass =
   "inline-flex min-h-11 items-center rounded-[3px] bg-accent px-5 font-medium text-background hover:opacity-90";
@@ -81,7 +81,7 @@ export default function Home() {
         <section id="offres" className={sectionClass}>
           <SectionLabel index={2}>offres</SectionLabel>
           <h2 className={titleClass}>Offres</h2>
-          <div className="mt-10 grid gap-x-10 gap-y-12 sm:grid-cols-2">
+          <div className="mt-10 grid gap-x-8 gap-y-12 md:grid-cols-3">
             {offers.map((offer, index) => (
               <article key={offer.slug} className="group flex flex-col border-t border-foreground pt-5">
                 <span aria-hidden className="font-mono text-sm text-accent">
@@ -90,7 +90,7 @@ export default function Home() {
                 </span>
                 <h3 className="mt-2 text-xl font-medium">{offer.name}</h3>
                 <p className="mt-1 text-sm text-muted">{offer.audience}</p>
-                <ul className="mt-5 grid gap-2 text-sm">
+                <ul className="mt-5 grid gap-2 pb-6 text-sm">
                   {offer.content.map((item) => (
                     <li key={item} className="flex gap-2">
                       <span aria-hidden className="font-mono text-accent">~</span>
@@ -98,9 +98,9 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-auto flex justify-between gap-4 pt-6 text-sm">
-                  <span className="text-muted">{offer.format}</span>
+                <div className="mt-auto flex flex-col gap-1 border-t border-border pt-4 text-sm">
                   <span className="font-medium">{offer.price}</span>
+                  <span className="text-muted">{offer.format}</span>
                 </div>
               </article>
             ))}
