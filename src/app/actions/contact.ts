@@ -30,7 +30,7 @@ export async function sendContact(_: ContactState, formData: FormData): Promise<
     return { status: "error", message: "Merci d'indiquer votre nom, un e-mail valide et votre message." };
   }
 
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, CONTACT_TO } = process.env;
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, CONTACT_TO } = process.env;
   if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
     console.error("Formulaire de contact : SMTP non configuré");
     return {
@@ -39,6 +39,8 @@ export async function sendContact(_: ContactState, formData: FormData): Promise<
     };
   }
 
+  // Avec un relais comme Brevo, l'identifiant SMTP n'est pas une adresse d'expédition.
+  const sender = SMTP_FROM ?? SMTP_USER;
   const port = Number(SMTP_PORT ?? 465);
   const transport = nodemailer.createTransport({
     host: SMTP_HOST,
@@ -49,8 +51,8 @@ export async function sendContact(_: ContactState, formData: FormData): Promise<
 
   try {
     await transport.sendMail({
-      from: `"nicolasrevel.fr" <${SMTP_USER}>`,
-      to: CONTACT_TO ?? SMTP_USER,
+      from: `"nicolasrevel.fr" <${sender}>`,
+      to: CONTACT_TO ?? sender,
       replyTo: { name, address: email },
       subject: `Contact : ${name}${company ? ` (${company})` : ""}`,
       text: `${message}\n\n${name}\n${email}${company ? `\n${company}` : ""}`,
