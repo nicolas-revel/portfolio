@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { InlineScript } from "@/components/inline-script";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { themeScript } from "@/components/theme-script";
 import { profile, siteUrl } from "@/content/site";
 import "./globals.css";
@@ -17,7 +19,10 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: `${profile.name} · Développeur fullstack & DevOps freelance à Marseille`,
+  title: {
+    default: `${profile.name} · Développeur fullstack & DevOps freelance à Marseille`,
+    template: `%s · ${profile.name}`,
+  },
   description: profile.pitch,
   openGraph: {
     title: profile.name,
@@ -38,7 +43,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <InlineScript html={themeScript} />
       </head>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }
