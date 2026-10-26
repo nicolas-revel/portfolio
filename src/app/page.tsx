@@ -5,7 +5,7 @@ import { CaseStudyCard } from "@/components/case-study-card";
 import { ContactCta } from "@/components/contact-cta";
 import { OfferCard } from "@/components/offer-card";
 import { SectionLabel } from "@/components/section-label";
-import { primaryButtonClass, sectionClass, textLinkClass, titleClass } from "@/components/styles";
+import { containerClass, primaryButtonClass, sectionClass, textLinkClass, titleClass } from "@/components/styles";
 import { caseStudies, method, offers, problem, profile } from "@/content/site";
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="mx-auto grid w-full max-w-5xl items-center gap-12 px-4 pt-10 pb-16 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+      <section className={`${containerClass} grid items-center gap-12 pt-10 pb-16 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]`}>
         <div>
           <p className="font-mono text-xs text-muted">
             ~ {profile.role} · {profile.location}

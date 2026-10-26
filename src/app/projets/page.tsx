@@ -17,7 +17,7 @@ export default function ProjectsPage() {
         <SectionLabel>projets</SectionLabel>
         <h1 className={pageTitleClass}>{projectsPage.title}</h1>
         <p className="mt-6 max-w-2xl text-lg text-muted">{projectsPage.intro}</p>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {caseStudies.map((study) => (
             <CaseStudyCard key={study.slug} study={study} />
           ))}
