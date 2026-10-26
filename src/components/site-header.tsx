@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import { profile } from "@/content/site";
 import { NavLinks } from "./nav-links";
 import { containerClass } from "./styles";
-import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {
   return (
@@ -11,13 +10,12 @@ export function SiteHeader() {
       <Link href="/" className="text-lg font-medium hover:text-accent">
         {profile.name}
       </Link>
-      <div className="order-last w-full sm:order-none sm:ml-auto sm:w-auto">
+      <div className="w-full sm:ml-auto sm:w-auto">
         {/* Une page de projet inconnue n'est résolue qu'à la requête : le lien actif attend l'URL. */}
         <Suspense fallback={<div className="min-h-11" />}>
           <NavLinks />
         </Suspense>
       </div>
-      <ThemeToggle />
     </header>
   );
 }

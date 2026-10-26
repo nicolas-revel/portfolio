@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Clair : « Calanque ». Sombre : « Bleu de nuit ». */
+/* Thème unique, clair : « Calanque ». */
 :root {
   --background: #f7f3ea;
   --foreground: #102a5c;
@@ -22,28 +22,6 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --background: #0f1e3d;
-    --foreground: #f4efe4;
-    --muted: #c5cddf;
-    --surface: #132449;
-    --border: #2e3f66;
-    --accent: #e8b04b;
-    color-scheme: dark;
-  }
-}
-
-:root[data-theme="dark"] {
-  --background: #0f1e3d;
-  --foreground: #f4efe4;
-  --muted: #c5cddf;
-  --surface: #132449;
-  --border: #2e3f66;
-  --accent: #e8b04b;
-  color-scheme: dark;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -51,9 +29,6 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  transition:
-    background-color 0.8s ease,
-    color 0.8s ease;
 }
 
 /* Touches ASCII animées : curseur de titre et vagues du pied de page. */
@@ -84,10 +59,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  body {
-    transition: none;
   }
 
   .cursor-blink,

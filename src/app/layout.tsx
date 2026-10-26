@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
-import { InlineScript } from "@/components/inline-script";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { themeScript } from "@/components/theme-script";
 import { profile, siteUrl } from "@/content/site";
 import "./globals.css";
 
@@ -37,12 +35,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      suppressHydrationWarning
       className={`${instrumentSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <head>
-        <InlineScript html={themeScript} />
-      </head>
       <body className="min-h-full flex flex-col font-sans">
         <SiteHeader />
         <main className="flex-1">{children}</main>
