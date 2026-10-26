@@ -23,3 +23,26 @@ Après le premier build, rendre le paquet `portfolio` public (Packages > Package
 pour que le VPS puisse récupérer l'image sans identifiants.
 
 Tant que `VPS_HOST` n'est pas défini, la CI publie l'image sans toucher au VPS.
+
+## Formulaire de contact
+
+Le formulaire envoie les messages par SMTP, via [Brevo](https://www.brevo.com) (offre gratuite).
+Les identifiants vivent uniquement sur le VPS, dans `/home/debian/portfolio/contact.env`
+(droits `600`), lu par `compose.yml` :
+
+```
+SMTP_HOST=smtp-relay.brevo.com
+SMTP_PORT=587
+SMTP_USER=<identifiant SMTP Brevo, du type xxx@smtp-brevo.com>
+SMTP_PASS=<clé SMTP Brevo>
+SMTP_FROM=contact@nicolasrevel.fr
+CONTACT_TO=<adresse qui reçoit les messages>
+```
+
+Côté Brevo : authentifier le domaine `nicolasrevel.fr` (enregistrements DNS à ajouter dans Cloudflare,
+sans toucher aux MX et au SPF d'OVH), puis créer une clé SMTP (SMTP & API > SMTP).
+`SMTP_FROM` doit être une adresse de ce domaine ; une redirection OVH `contact@nicolasrevel.fr`
+vers `CONTACT_TO` permet aussi de recevoir les réponses.
+
+Après une modification : recopier `compose.yml` sur le VPS si besoin, puis `./deploy.sh`.
+Sans ce fichier, le site fonctionne et la page contact renvoie vers LinkedIn.

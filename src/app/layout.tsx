@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
-import { InlineScript } from "@/components/inline-script";
-import { themeScript } from "@/components/theme-script";
-import { profile } from "@/content/site";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { profile, siteUrl } from "@/content/site";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -16,13 +16,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nicolasrevel.fr"),
-  title: `${profile.name} · Accompagnement au code assisté par IA`,
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${profile.name} · Développeur fullstack & DevOps freelance à Marseille`,
+    template: `%s · ${profile.name}`,
+  },
   description: profile.pitch,
   openGraph: {
     title: profile.name,
     description: profile.pitch,
-    url: "https://nicolasrevel.fr",
+    url: siteUrl,
     locale: "fr_FR",
     type: "website",
   },
@@ -32,13 +35,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      suppressHydrationWarning
       className={`${instrumentSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <head>
-        <InlineScript html={themeScript} />
-      </head>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }
