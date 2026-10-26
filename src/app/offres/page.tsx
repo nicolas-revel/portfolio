@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { ContactCta } from "@/components/contact-cta";
+import { PageTitle } from "@/components/page-title";
 import { SectionLabel } from "@/components/section-label";
-import { pageTitleClass, sectionClass, titleClass } from "@/components/styles";
+import { sectionClass, titleClass } from "@/components/styles";
 import { offers, offersPage } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function OffersPage() {
     <>
       <section className={sectionClass}>
         <SectionLabel>offres</SectionLabel>
-        <h1 className={pageTitleClass}>{offersPage.title}</h1>
+        <PageTitle>{offersPage.title}</PageTitle>
         <p className="mt-6 max-w-2xl text-lg text-muted">{offersPage.intro}</p>
       </section>
 

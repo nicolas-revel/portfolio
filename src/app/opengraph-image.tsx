@@ -27,7 +27,7 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", fontSize: 28, color: muted }}>
-          ~ nicolasrevel.fr · {profile.location}
+          nicolasrevel.fr · {profile.location}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <div style={{ fontSize: 64, fontWeight: 600, lineHeight: 1.1 }}>{profile.pitchLead}</div>

@@ -107,7 +107,7 @@ export function AsciiScene({ className = "" }: { className?: string }) {
   return (
     <pre
       aria-hidden
-      className={`m-0 overflow-hidden font-mono leading-[1.1] text-accent text-[clamp(6px,2.1vw,13px)] lg:text-[11px] ${className}`}
+      className={`m-0 overflow-hidden font-mono leading-[1.1] text-accent text-[clamp(6px,2.1vw,13px)] lg:text-[clamp(10px,1.1vw,18px)] ${className}`}
     >
       {render(shown)}
     </pre>

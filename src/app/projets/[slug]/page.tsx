@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactCta } from "@/components/contact-cta";
+import { PageTitle } from "@/components/page-title";
 import { SectionLabel } from "@/components/section-label";
-import { pageTitleClass, sectionClass, textLinkClass } from "@/components/styles";
+import { sectionClass, textLinkClass } from "@/components/styles";
 import { caseStudies } from "@/content/site";
 
 function findStudy(slug: string) {
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: PageProps<"/projets/[slug]">)
 function Block({ label, items }: { label: string; items: string[] }) {
   return (
     <div className="grid gap-3 border-t border-border pt-5 md:grid-cols-[12rem_1fr]">
-      <h2 className="font-mono text-xs text-accent">~ {label}</h2>
+      <h2 className="font-mono text-xs text-accent">{label}</h2>
       <ul className="grid gap-3">
         {items.map((item) => (
           <li key={item}>{item}</li>
@@ -44,7 +45,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projets/[slu
         </Link>
         <div className="mt-8">
           <SectionLabel>{study.period}</SectionLabel>
-          <h1 className={pageTitleClass}>{study.title}</h1>
+          <PageTitle>{study.title}</PageTitle>
           <p className="mt-6 max-w-2xl text-lg text-muted">{study.summary}</p>
           <p className="mt-4 text-sm">{study.role}</p>
         </div>
@@ -54,7 +55,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projets/[slu
           <Block label="ce que j'ai fait" items={study.work} />
           <Block label="résultat" items={study.outcome} />
           <div className="grid gap-3 border-t border-border pt-5 md:grid-cols-[12rem_1fr]">
-            <h2 className="font-mono text-xs text-accent">~ stack</h2>
+            <h2 className="font-mono text-xs text-accent">stack</h2>
             <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-sm text-muted">
               {study.stack.map((item) => (
                 <li key={item}>[{item}]</li>
@@ -63,7 +64,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projets/[slu
           </div>
           {study.links.length > 0 && (
             <div className="grid gap-3 border-t border-border pt-5 md:grid-cols-[12rem_1fr]">
-              <h2 className="font-mono text-xs text-accent">~ liens</h2>
+              <h2 className="font-mono text-xs text-accent">liens</h2>
               <ul className="grid gap-2">
                 {study.links.map((link) => (
                   <li key={link.href}>

@@ -13,10 +13,10 @@ export default function Home() {
 
   return (
     <>
-      <section className={`${containerClass} grid items-center gap-12 pt-10 pb-16 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]`}>
+      <section className={`${containerClass} grid items-center gap-12 pt-10 pb-16 sm:pt-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]`}>
         <div>
           <p className="font-mono text-xs text-muted">
-            ~ {profile.role} · {profile.location}
+            {profile.role} · {profile.location}
           </p>
           <h1 className="mt-5 text-4xl font-medium tracking-tight sm:text-5xl">
             {profile.pitchLead} <em className="text-accent">{profile.pitchAccent}</em>

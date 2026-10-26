@@ -56,6 +56,31 @@ body {
     color 0.8s ease;
 }
 
+/* Touches ASCII animées : curseur de titre et vagues du pied de page. */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes wave {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.cursor-blink {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+.wave-left {
+  animation: wave 90s linear infinite;
+}
+
+.wave-right {
+  animation: wave 140s linear infinite reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -63,5 +88,11 @@ body {
 
   body {
     transition: none;
+  }
+
+  .cursor-blink,
+  .wave-left,
+  .wave-right {
+    animation: none;
   }
 }
