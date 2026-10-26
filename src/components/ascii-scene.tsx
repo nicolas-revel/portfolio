@@ -7,7 +7,19 @@ const WIDTH = 66;
 const HEIGHT = 17;
 const HORIZON = 10;
 const SUN_X = 41;
-const SUN_RADIUS = 5.5;
+// Soleil et lune dessinés à la main : le centre du soleil est en colonne 9, celui de la lune en colonne 3.
+const SUN = [
+  "    \\    |    /",
+  "      .-'''-.",
+  "  -- /       \\ --",
+  "    |         |",
+  "  -- \\       / --",
+  "      '-._.-'",
+  "    /    |    \\",
+];
+const MOON = [" .--.", "/  .-'", "|  (", "\\  '-.", " '--'"];
+// Largeur du reflet du soleil sur la mer.
+const REFLECTION = 11.5;
 const MOON_X = 48;
 // Le soleil descend de SUN_SET lignes avant que la lune ne se lève.
 const SUN_SET = 8;
@@ -22,25 +34,41 @@ function cliffTop(x: number) {
   return Math.min(x < 28 ? left : 99, x > 52 ? right : 99);
 }
 
-function skyChar(x: number, y: number, { drop, moon }: Frame) {
+function skyChar(x: number, y: number, frame: Frame) {
+  const { moon } = frame;
   const top = cliffTop(x);
   if (y >= top) {
     const depth = y - top;
     if (depth === 0) return x <= 5 || (x > 52 && x <= 60) ? "/" : "\\";
     return depth > 3 ? "%" : depth > 1 ? "#" : "*";
   }
-  const toMoon = Math.hypot((x - MOON_X) / 2.1, y - (HORIZON + 2 - moon * 9));
-  if (moon > 0 && toMoon < 2.6) return toMoon < 1.4 ? "@" : "o";
-  const toSun = Math.hypot((x - SUN_X) / 2.1, y - HORIZON + 0.5 - drop);
-  if (toSun < SUN_RADIUS) return toSun < SUN_RADIUS - 1.6 ? "@" : "o";
-  if (toSun < SUN_RADIUS + 1.2 && drop < 4) return (x + y) % 2 === 0 ? "." : " ";
+  const sun = spriteChar(SUN, x - SUN_X + 9, y - (HORIZON - 7 + Math.round(frame.drop)));
+  // Les rayons disparaissent dès que le soleil commence à se coucher.
+  if (sun !== " " && (frame.drop < 1 || isDisc(x, y, frame))) return sun;
+  if (moon > 0) {
+    const column = x - MOON_X + 3;
+    const row = y - Math.round(HORIZON - moon * 9);
+    // Pas d'étoile dans le creux du croissant.
+    if (row >= 0 && row < MOON.length && column >= 0 && column < 6) return spriteChar(MOON, column, row);
+  }
   if (moon > 0.5 && (x * 7 + y * 13) % 29 === 0) return ".";
   return " ";
 }
 
+function spriteChar(sprite: string[], column: number, row: number) {
+  return sprite[row]?.[column] ?? " ";
+}
+
+// Le disque, sans les rayons, occupe les lignes 1 à 5 du dessin, entre les colonnes 4 et 14.
+function isDisc(x: number, y: number, { drop }: Frame) {
+  const row = y - (HORIZON - 7 + Math.round(drop));
+  const column = x - SUN_X + 9;
+  return row >= 1 && row <= 5 && column >= 4 && column <= 14;
+}
+
 function seaChar(x: number, y: number, { tick, drop, moon }: Frame) {
   const dy = y - HORIZON;
-  const sunReflection = (SUN_RADIUS * 2.1 - dy * 0.9) * Math.max(0, 1 - drop / 7);
+  const sunReflection = (REFLECTION - dy * 0.9) * Math.max(0, 1 - drop / 7);
   const moonReflection = moon > 0.6 ? 4 - dy * 0.6 : 0;
   const inReflection =
     Math.abs(x - SUN_X) < sunReflection || Math.abs(x - MOON_X) < moonReflection;
