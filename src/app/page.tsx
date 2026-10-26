@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AsciiDivider } from "@/components/ascii-divider";
+import { SectionDivider } from "@/components/section-divider";
 import { AsciiScene } from "@/components/ascii-scene";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { ContactCta } from "@/components/contact-cta";
@@ -34,7 +34,7 @@ export default function Home() {
         <AsciiScene />
       </section>
 
-      <AsciiDivider />
+      <SectionDivider />
 
       <section className={sectionClass}>
         <SectionLabel index={1}>constat</SectionLabel>
@@ -59,7 +59,7 @@ export default function Home() {
         </Link>
       </section>
 
-      <AsciiDivider />
+      <SectionDivider />
 
       <section className={sectionClass}>
         <SectionLabel index={3}>méthode</SectionLabel>

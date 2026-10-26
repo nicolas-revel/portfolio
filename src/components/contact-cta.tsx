@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { contact } from "@/content/site";
-import { AsciiDivider } from "./ascii-divider";
+import { SectionDivider } from "./section-divider";
 import { primaryButtonClass, sectionClass, titleClass } from "./styles";
 
 // Appel à l'action en bas de chaque page.
 export function ContactCta() {
   return (
     <>
-      <AsciiDivider />
+      <SectionDivider />
       <section className={sectionClass}>
         <h2 className={titleClass}>{contact.title}</h2>
         <p className="mt-4 max-w-2xl text-muted">{contact.text}</p>
