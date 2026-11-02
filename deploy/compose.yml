@@ -9,3 +9,13 @@ services:
     env_file:
       - path: ./contact.env
         required: false
+    # Le réseau du dépôt infra, où Stalwart répond au nom mail.nicolasrevel.fr : depuis un
+    # conteneur, l'IP publique du VPS ne mène pas au serveur mail (réseaux Docker isolés, ufw).
+    networks:
+      - default
+      - infra
+
+networks:
+  infra:
+    name: infra_default
+    external: true

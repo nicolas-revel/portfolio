@@ -42,5 +42,9 @@ CONTACT_TO=contact@nicolasrevel.fr
 `SMTP_FROM` est facultatif quand il vaut `SMTP_USER`. N'importe quel autre serveur SMTP
 (Brevo par exemple) fonctionne avec les mêmes variables.
 
+Le conteneur est branché sur le réseau `infra_default` de la pile infra, où Stalwart porte l'alias
+`mail.nicolasrevel.fr` : le nom résout directement vers le serveur mail et le certificat reste valide.
+Ce réseau doit donc exister (`docker compose up -d` dans `/home/debian/infra`) avant de lancer le site.
+
 Après une modification : recopier `compose.yml` sur le VPS si besoin, puis `./deploy.sh`.
 Sans ce fichier, le site fonctionne et la page contact renvoie vers LinkedIn.
