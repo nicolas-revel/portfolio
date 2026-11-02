@@ -5,3 +5,7 @@ services:
     # Seul Caddy, sur l'hôte, joint le site : jamais exposé directement.
     ports:
       - "127.0.0.1:3000:3000"
+    # Identifiants SMTP du formulaire de contact, gardés hors du dépôt (voir README).
+    env_file:
+      - path: ./contact.env
+        required: false

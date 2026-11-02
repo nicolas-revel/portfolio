@@ -23,3 +23,24 @@ Après le premier build, rendre le paquet `portfolio` public (Packages > Package
 pour que le VPS puisse récupérer l'image sans identifiants.
 
 Tant que `VPS_HOST` n'est pas défini, la CI publie l'image sans toucher au VPS.
+
+## Formulaire de contact
+
+Le formulaire envoie les messages par SMTP, via le serveur mail du VPS (Stalwart, dépôt
+`nicolas-revel/infra`), avec le compte dédié `site@nicolasrevel.fr`. Les identifiants vivent
+uniquement sur le VPS, dans `/home/debian/portfolio/contact.env` (droits `600`), lu par `compose.yml` :
+
+```
+SMTP_HOST=mail.nicolasrevel.fr
+SMTP_PORT=465
+SMTP_USER=site@nicolasrevel.fr
+SMTP_PASS=<mot de passe du compte site@>
+SMTP_FROM=site@nicolasrevel.fr
+CONTACT_TO=contact@nicolasrevel.fr
+```
+
+`SMTP_FROM` est facultatif quand il vaut `SMTP_USER`. N'importe quel autre serveur SMTP
+(Brevo par exemple) fonctionne avec les mêmes variables.
+
+Après une modification : recopier `compose.yml` sur le VPS si besoin, puis `./deploy.sh`.
+Sans ce fichier, le site fonctionne et la page contact renvoie vers LinkedIn.
