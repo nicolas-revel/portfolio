@@ -26,25 +26,25 @@ Tant que `VPS_HOST` n'est pas défini, la CI publie l'image sans toucher au VPS.
 
 ## Formulaire de contact
 
-Le formulaire envoie les messages par SMTP, via le serveur mail du VPS (Stalwart, dépôt
-`nicolas-revel/infra`), avec le compte dédié `site@nicolasrevel.fr`. Les identifiants vivent
-uniquement sur le VPS, dans `/home/debian/portfolio/contact.env` (droits `600`), lu par `compose.yml` :
+Le formulaire envoie les messages par le relais SMTP de Google Workspace (le mail de
+nicolasrevel.fr est chez Google, voir `docs/mail.md` du dépôt `nicolas-revel/infra`). Les identifiants
+vivent uniquement sur le VPS, dans `/home/debian/portfolio/contact.env` (droits `600`), lu par `compose.yml` :
 
 ```
-SMTP_HOST=mail.nicolasrevel.fr
+SMTP_HOST=smtp-relay.gmail.com
 SMTP_PORT=465
-SMTP_USER=site@nicolasrevel.fr
-SMTP_PASS=<mot de passe du compte site@>
+SMTP_USER=me@nicolasrevel.fr
+SMTP_PASS=<mot de passe d'application de me@>
 SMTP_FROM=site@nicolasrevel.fr
 CONTACT_TO=contact@nicolasrevel.fr
 ```
 
+Le relais (Admin Google → Gmail → Routage → Service relais SMTP) n'accepte que l'IP du VPS : à mettre
+à jour si elle change. Passer par `smtp.gmail.com` ne convient pas : Gmail rangerait chaque demande
+dans « Envoyés » comme un mail à soi-même, au lieu de la boîte de réception.
+
 `SMTP_FROM` est facultatif quand il vaut `SMTP_USER`. N'importe quel autre serveur SMTP
 (Brevo par exemple) fonctionne avec les mêmes variables.
-
-Le conteneur est branché sur le réseau `infra_default` de la pile infra, où Stalwart porte l'alias
-`mail.nicolasrevel.fr` : le nom résout directement vers le serveur mail et le certificat reste valide.
-Ce réseau doit donc exister (`docker compose up -d` dans `/home/debian/infra`) avant de lancer le site.
 
 Après une modification : recopier `compose.yml` sur le VPS si besoin, puis `./deploy.sh`.
 Sans ce fichier, le site fonctionne et la page contact renvoie vers LinkedIn.
