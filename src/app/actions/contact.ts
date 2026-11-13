@@ -45,6 +45,9 @@ export async function sendContact(_: ContactState, formData: FormData): Promise<
   const transport = nodemailer.createTransport({
     host: SMTP_HOST,
     port,
+    // Nom annoncé au serveur (EHLO) : sans lui, c'est l'identifiant du conteneur Docker, que le
+    // relais SMTP de Google refuse parfois (421 4.7.0).
+    name: "nicolasrevel.fr",
     secure: port === 465,
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
